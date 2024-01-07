@@ -28,6 +28,11 @@ namespace BlogProject.Data
                 .Property(e => e.LastName)
                 .IsRequired(false)
                 .HasMaxLength(32);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .Property(e => e.IsEmailConfirmed)
+                .IsRequired(true)
+                .HasDefaultValue(false);
         }
     }
 }

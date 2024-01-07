@@ -45,6 +45,11 @@ namespace BlogProject.Data.Migrations
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
 
+                    b.Property<bool>("IsEmailConfirmed")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
                     b.Property<string>("LastName")
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
