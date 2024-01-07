@@ -1,5 +1,26 @@
-:root{
+:root {
     --blog-error: #ff0000;
+    /** CSS DARK THEME PRIMARY COLORS */
+    --color-primary-100: #000000;
+    --color-primary-200: #1e1e1e;
+    --color-primary-300: #353535;
+    --color-primary-400: #4e4e4e;
+    --color-primary-500: #696969;
+    --color-primary-600: #858585;
+    /** CSS DARK THEME SURFACE COLORS */
+    --color-surface-100: #121212;
+    --color-surface-200: #282828;
+    --color-surface-300: #3f3f3f;
+    --color-surface-400: #575757;
+    --color-surface-500: #717171;
+    --color-surface-600: #8b8b8b;
+    /** CSS DARK THEME MIXED SURFACE COLORS */
+    --color-surface-mixed-100: #111111;
+    --color-surface-mixed-200: #272727;
+    --color-surface-mixed-300: #3e3e3e;
+    --color-surface-mixed-400: #565656;
+    --color-surface-mixed-500: #707070;
+    --color-surface-mixed-600: #8b8b8b;
 }
 
 html {
@@ -23,4 +44,33 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+.post-container {
+    position: relative;
+    border: 1px solid var(--color-surface-600);
+    min-width: 400px;
+    max-width: 580px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    left: 50%;
+    transform: translate(-50%);
+}
+.post-content {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.post-content h3 {
+    margin-bottom: 0rem;
+}
+
+.post-content h4 {
+    margin-bottom: 1rem;
+}
+
+.post-id {
+    color: var(--color-primary-500);
+    padding-left: 5px;
+    padding-top: 5px;
 }

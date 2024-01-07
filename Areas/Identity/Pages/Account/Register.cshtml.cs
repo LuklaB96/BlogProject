@@ -81,7 +81,7 @@ namespace BlogProject.Areas.Identity.Pages.Account
             public string Email { get; set; }
             [StringLength(32, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
             [DataType(DataType.Text)]
-            [Display(Name = "Nicname")]
+            [Display(Name = "Nickname")]
             public string Nickname { get; set; }
             [StringLength(32, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
             [DataType(DataType.Text)]

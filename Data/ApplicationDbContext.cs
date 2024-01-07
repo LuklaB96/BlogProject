@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using BlogProject.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlogProject.Data
@@ -28,6 +29,21 @@ namespace BlogProject.Data
                 .Property(e => e.LastName)
                 .IsRequired(false)
                 .HasMaxLength(32);
+
+            modelBuilder.Entity<BlogPostModel>()
+                .Property(e => e.Id)
+                .IsRequired(true);
+            modelBuilder.Entity<BlogPostModel>()
+                .Property(e => e.Title)
+                .IsRequired(true)
+                .HasMaxLength(100);
+            modelBuilder.Entity<BlogPostModel>()
+                .Property(e => e.Content)
+                .IsRequired(true);
+            modelBuilder.Entity<BlogPostModel>()
+                .Property(e => e.CreatedAt)
+                .IsRequired(true);
         }
+        public DbSet<BlogProject.Models.BlogPostModel> BlogPostModel { get; set; } = default!;
     }
 }

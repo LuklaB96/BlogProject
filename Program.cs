@@ -45,7 +45,6 @@ namespace BlogProject
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
-            Console.WriteLine("test");
             app.Run();
         }
     }
