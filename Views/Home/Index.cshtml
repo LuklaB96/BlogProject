@@ -1,8 +1,40 @@
-﻿@{
+﻿@model IEnumerable<BlogProject.Models.BlogPostModel>
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    
+    <div class="row">
+        <div class="col-md-4">
+            @using (Html.BeginForm("Create", "Posts", FormMethod.Post, null))
+            {
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="FirstOrDefault().Title" class="control-label"></label>
+                    <input asp-for="FirstOrDefault().Title" value="" class="form-control" />
+                    <span asp-validation-for="FirstOrDefault().Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FirstOrDefault().Content" class="control-label"></label>
+                    <input asp-for="FirstOrDefault().Content" value="" class="form-control" />
+                    <span asp-validation-for="FirstOrDefault().Content" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            }
+        </div>
+    </div>
+    @foreach (var item in Model)
+    {
+        <div class="post-container">
+            <span class="post-id">Created at: @Html.DisplayFor(modelItem => item.CreatedAt)</span>
+            <div class="post-content">
+                <h3>Title: @Html.DisplayFor(modelItem => item.Title)</h3>
+                <h4>Author: @Html.DisplayFor(modelItem => item.Author.Nickname)</h4>
+                <span>@Html.DisplayFor(modelItem => item.Content)</span>
+            </div>
+        </div>
+    }
 </div>

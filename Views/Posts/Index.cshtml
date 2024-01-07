@@ -44,22 +44,11 @@
                 @Html.DisplayFor(modelItem => item.Author.Nickname)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+               <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+               <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+               <a asp-action="Details" asp-route-id="@item.Id">Details</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
-@foreach (var item in Model)
-{
-    <div class="post-container">
-        <span class="post-id">Created at: @Html.DisplayFor(modelItem => item.CreatedAt)</span>
-        <div class="post-content">
-            <h3>Title: @Html.DisplayFor(modelItem => item.Title)</h3>
-            <h4>Author: @Html.DisplayFor(modelItem => item.Author.Nickname)</h4>
-            <span>@Html.DisplayFor(modelItem => item.Content)</span>
-        </div>
-    </div>
-}
