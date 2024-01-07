@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using BlogProject.Data;
 using BlogProject.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlogProject.Controllers
 {
@@ -23,6 +24,7 @@ namespace BlogProject.Controllers
         }
 
         // GET: Posts
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.BlogPostModel.Include(b => b.Author);
@@ -30,6 +32,7 @@ namespace BlogProject.Controllers
         }
 
         // GET: Posts/Details/5
+        [Authorize(Roles = "Admin, Basic")]
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -49,6 +52,7 @@ namespace BlogProject.Controllers
         }
 
         // GET: Posts/Create
+        [Authorize(Roles = "Admin, Basic")]
         public IActionResult Create()
         {
             ViewData["AuthorId"] = new SelectList(_context.Users, "Id", "Id");
@@ -60,6 +64,7 @@ namespace BlogProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Basic")]
         public async Task<IActionResult> Create([Bind("Id,CreatedAt,Title,Content,AuthorId")] BlogPostModel blogPostModel)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -74,12 +79,12 @@ namespace BlogProject.Controllers
                 var res = await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            Console.WriteLine("CHUJ W DUPE");
             ViewData["AuthorId"] = new SelectList(_context.Users, "Id", "Id", blogPostModel.AuthorId);
             return View(blogPostModel);
         }
 
         // GET: Posts/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -101,6 +106,7 @@ namespace BlogProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id, [Bind("Id,CreatedAt,Title,Content,AuthorId")] BlogPostModel blogPostModel)
         {
             if (id != blogPostModel.Id)
@@ -133,6 +139,7 @@ namespace BlogProject.Controllers
         }
 
         // GET: Posts/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -154,6 +161,7 @@ namespace BlogProject.Controllers
         // POST: Posts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var blogPostModel = await _context.BlogPostModel.FindAsync(id);
