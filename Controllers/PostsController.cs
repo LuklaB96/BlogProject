@@ -51,6 +51,16 @@ namespace BlogProject.Controllers
             return View(blogPostModel);
         }
 
+        [Authorize(Roles = "Admin, Basic")]
+        public IActionResult SearchByTag(BlogPostTag tag)
+        {
+            ViewBag.Tags = _context.BlogPostModel
+            .Select(b => b.Tag)
+            .Distinct()
+            .ToList();
+            return View(_context.BlogPostModel.Where(j => j.Tag == tag).ToList());
+        }
+
         // GET: Posts/Create
         [Authorize(Roles = "Admin, Basic")]
         public IActionResult Create()
@@ -65,7 +75,7 @@ namespace BlogProject.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin, Basic")]
-        public async Task<IActionResult> Create([Bind("Id,CreatedAt,Title,Content,AuthorId")] BlogPostModel blogPostModel)
+        public async Task<IActionResult> Create([Bind("Id,CreatedAt,Title,Content,AuthorId,Tag")] BlogPostModel blogPostModel)
         {
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;

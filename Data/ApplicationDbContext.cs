@@ -33,16 +33,26 @@ namespace BlogProject.Data
             modelBuilder.Entity<BlogPostModel>()
                 .Property(e => e.Id)
                 .IsRequired(true);
+
             modelBuilder.Entity<BlogPostModel>()
                 .Property(e => e.Title)
                 .IsRequired(true)
                 .HasMaxLength(100);
+
             modelBuilder.Entity<BlogPostModel>()
                 .Property(e => e.Content)
                 .IsRequired(true);
+
             modelBuilder.Entity<BlogPostModel>()
                 .Property(e => e.CreatedAt)
                 .IsRequired(true);
+
+            modelBuilder.Entity<BlogPostModel>()
+                .Property(e => e.Tag)
+                .IsRequired(true);
+
+
+
         }
         public DbSet<BlogProject.Models.BlogPostModel> BlogPostModel { get; set; } = default!;
     }
