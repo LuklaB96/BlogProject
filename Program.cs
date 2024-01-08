@@ -50,13 +50,6 @@ namespace BlogProject
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
 
-            app.UseStatusCodePages(async context => {
-                if (context.HttpContext.Response.StatusCode == 403)
-                {
-                    context.HttpContext.Response.Redirect("/");
-                }
-            });
-
 
             using (var scope = app.Services.CreateScope())
             {
