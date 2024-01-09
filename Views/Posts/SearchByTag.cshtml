@@ -1,0 +1,23 @@
+﻿@model IEnumerable<BlogProject.Models.BlogPostModel>
+
+<h2>Blog Posts</h2>
+
+<form asp-action="SearchByTag" method="get">
+    <div class="form-group">
+        <label asp-for="@Model.First().Tag" class="control-label"></label>
+        <select asp-for="@Model.First().Tag" asp-items="@(new SelectList(ViewBag.Tags))" class="form-control"></select>
+        <span asp-validation-for="@Model.First().Tag" class="text-danger"></span>
+    </div>
+    <input type="submit" value="Search" class="btn btn-primary" />
+</form>
+
+<div>
+    @foreach (var item in Model)
+    {
+        <div>
+            <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+            <p><strong>Tag:</strong> @Html.DisplayFor(modelItem => item.Tag)</p>
+        </div>
+        <hr /> <!-- line break after each post -->
+    }
+</div>

@@ -4,6 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlogProject.Models
 {
+    public enum BlogPostTag
+    {
+        Sport,
+        Ekonomia,
+        Medycyna,
+        Informatyka
+    }
     public class BlogPostModel
     {
         public string? Id { get; set; }
@@ -16,5 +23,6 @@ namespace BlogProject.Models
         [ForeignKey("ApplicationUser")]
         public string? AuthorId { get; set; }
         public virtual ApplicationUser? Author { get; set; }
+        public  BlogPostTag Tag { get; set; }
     }
 }
