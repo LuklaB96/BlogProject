@@ -5,43 +5,29 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
 
-<h4>BlogPostModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Content" class="control-label"></label>
-                <input asp-for="Content" class="form-control" />
-                <span asp-validation-for="Content" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tag" class="control-label"></label>
-                <select asp-for="Tag" asp-items="Html.GetEnumSelectList<BlogPostTag>()" class="form-control">
-                    <option selected="selected" value="">Please select</option>
-                </select>
-                <span asp-validation-for="Tag" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    @if (User.IsInRole("Admin"))
-    {
-        <a asp-action="Index">Posts Manager</a>
-    }
+<div class="container w-50 mt-5">
+    <h4 class="mb-4">Add a new post</h4>
+    <form asp-action="Create">
+        <div class="form-group">
+            <label asp-for="Title" class="control-label">Title:</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Content" class="control-label">Content:</label>
+            <textarea asp-for="Content" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Content" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Tag" class="control-label">Tag:</label>
+            <select asp-for="Tag" asp-items="Html.GetEnumSelectList<BlogPostTag>()" class="form-control">
+                <option value="">Please select</option>
+            </select>
+            <span asp-validation-for="Tag" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Add Post</button>
+    </form>
 </div>
 
 @section Scripts {

@@ -3,40 +3,29 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    
-    <div class="row">
-        <div class="col-md-4">
-            <div>test</div>
-            @using (Html.BeginForm("Create", "Posts", FormMethod.Post, null))
-            {
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="FirstOrDefault().Title" class="control-label"></label>
-                    <input asp-for="FirstOrDefault().Title" value="" class="form-control" />
-                    <span asp-validation-for="FirstOrDefault().Title" class="text-danger"></span>
+@if(Model.Count() > 0)
+{
+    <div class="text-center">
+        @foreach (var item in Model)
+        {
+            <div class="post-container w-50">
+                <div class="author">
+                    <h5>Author: @Html.DisplayFor(modelItem => item.Author.Nickname)</h5>
+                    <span class="post-id">@Html.DisplayFor(modelItem => item.CreatedAt)</span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="FirstOrDefault().Content" class="control-label"></label>
-                    <input asp-for="FirstOrDefault().Content" value="" class="form-control" />
-                    <span asp-validation-for="FirstOrDefault().Content" class="text-danger"></span>
+                <div class="post-content">
+                    <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+                    <span>@Html.DisplayFor(modelItem => item.Content)</span>
+                    <hr />
+                    <h6>Tag: @Html.DisplayFor(modelItem => item.Tag)</h6>
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-            }
-        </div>
-    </div>
-    @foreach (var item in Model)
-    {
-        <div class="post-container">
-            <span class="post-id">Created at: @Html.DisplayFor(modelItem => item.CreatedAt)</span>
-            <div class="post-content">
-                <h6>Tag: @Html.DisplayFor(modelItem => item.Tag)</h6>
-                <h3>Title: @Html.DisplayFor(modelItem => item.Title)</h3>
-                <h4>Author: @Html.DisplayFor(modelItem => item.Author.Nickname)</h4>
-                <span>@Html.DisplayFor(modelItem => item.Content)</span>
             </div>
-        </div>
-    }
-</div>
+            
+        }
+    </div>
+}
+else
+{
+    <h4>No posts added yet.</h4>
+}
+
