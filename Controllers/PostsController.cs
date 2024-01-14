@@ -87,7 +87,7 @@ namespace BlogProject.Controllers
             {
                 _context.Add(blogPostModel);
                 var res = await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return new RedirectResult(url: "/", permanent: true, preserveMethod: true);
             }
             ViewData["AuthorId"] = new SelectList(_context.Users, "Id", "Id", blogPostModel.AuthorId);
             return View(blogPostModel);
