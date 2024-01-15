@@ -1,5 +1,8 @@
 Projrkt powstal w asp.net
 
+WAŻNE! Przed odpaleniem projektu zrobić update-database 
+
+
 Logowanie/rejestracja/wylogowywanie odbywa sie przy pomocy Identity
 Podczas rejstreacji e-amil uzytkownika musibyc unikalny, podlega to waalidacji.
 Inne pola rowniez sa walidowane a bledy wyswietlane uzytkownikowi.
