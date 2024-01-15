@@ -7,9 +7,17 @@ Logowanie/rejestracja/wylogowywanie odbywa sie przy pomocy Identity
 Podczas rejstreacji e-amil uzytkownika musibyc unikalny, podlega to waalidacji.
 Inne pola rowniez sa walidowane a bledy wyswietlane uzytkownikowi.
 
-Aby dzialanie wysyalania emaila dzialalo, musimy skonfigurowac zewnetrzny SMTP 
-(moze byc z gmass, lub gmail), w Areas -> Identity -> Pages -> Account -> Register.cs -> SendEmailAsync  umiescic swoje haslo itd. 
-Jest opcja ominiecia tego po uruchomieniu aplikacji przejsc do db i zmienic dla uzytkowanika pole EmailComfirmed na True
+Aby można było wysyłać e-mail z potwierdzeniem rejestracji trzeba skonfigurować klienta SMTP:
+1. Areas -> Identity -> Pages -> Account -> Register.cshtml.cs -> SendEmailAsync umieszczamy realne dane serwera SMTP (Gmail etc.)
+2. Wchodzimy w Program.cs i w linijcie 21 zmieniamy
+   ```
+   options.SignIn.RequireConfirmedAccount = false
+   ```
+   na
+   ```
+   options.SignIn.RequireConfirmedAccount = true
+   ```
+I powinno działać.
 
 Sa trzy stopnie dostepu, 
 Niezalogowany uzytkownik - widzi tyko posty na stronie glownej.
