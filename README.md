@@ -1,12 +1,14 @@
-Projrkt powstal w asp.net
+Projekt powstał w ASP.NET
 
-WAŻNE! Przed odpaleniem projektu zrobić update-database 
+# Przeczytaj!
+Przed odpaleniem projektu należy zrobić update-database za pomocą Tools > NuGet Package Manager > Package Manager Console
 
 
-Logowanie/rejestracja/wylogowywanie odbywa sie przy pomocy Identity
-Podczas rejstreacji e-amil uzytkownika musibyc unikalny, podlega to waalidacji.
-Inne pola rowniez sa walidowane a bledy wyswietlane uzytkownikowi.
+Logowanie/rejestracja/wylogowywanie odbywa sie przy pomocy modelu ApplicationUser rozszerzającej bazowe Identity
 
+Wszystkie pola są walidowane.
+
+## Konfiguracja E-Mail
 Aby można było wysyłać e-mail z potwierdzeniem rejestracji trzeba skonfigurować klienta SMTP:
 1. Areas -> Identity -> Pages -> Account -> Register.cshtml.cs -> SendEmailAsync umieszczamy realne dane serwera SMTP (Gmail etc.)
 2. Wchodzimy w Program.cs i w linijcie 21 zmieniamy
@@ -19,14 +21,15 @@ Aby można było wysyłać e-mail z potwierdzeniem rejestracji trzeba skonfiguro
    ```
 I powinno działać.
 
-Sa trzy stopnie dostepu, 
-Niezalogowany uzytkownik - widzi tyko posty na stronie glownej.
-Zalogowany - to samo co nie zalogowany, moze dodawac posty oraz je wyszukiwac.
-Admin - Moze dodawac, wyszukiwac oraz ma dodatkowy panel do edycji/usuwania
+### Informacje dodatkowe
+Stopnie dostępu:
+
+Niezalogowany uzytkownik - widzi tyko posty na stronie glównej.
+Zalogowany - to samo co nie zalogowany, moze dodawać posty oraz je wyszukiwać.
+Admin - Moze dodawać, wyszukiwać oraz ma dodatkowy panel do edycji/usuwania postów
 
 Posty - Skladaja sie z Title, content, tag, author, createdAt i AuthorId
-Uzytkownika wypelnia tylko title, content oraz tag, reszta jest uzupelniana automatycznie.
+Uzytkownik wypełnia tylko title, content oraz tag, reszta jest uzupełniana automatycznie.
 
-Tag jest zahardkodowany w kodzie, jest elementem obiektu post, jest to enum z ktorego mozemy wybrac wartosc.
-Na podstawie taga mozemy wyszukac post
-Mozemy wyszukiwac po tagach ktore istnieja juz w postach w db
+Tag jest zahardkodowany w kodzie, jest elementem obiektu post, jest to enum z ktorego mozemy wybrać wartość.
+Możemy wyszukiwać po tagach, jeżeli jakiekolwiek posty istnieję w bazie.
