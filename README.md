@@ -10,7 +10,7 @@ Wszystkie pola są walidowane.
 
 ## Konfiguracja E-Mail
 Aby można było wysyłać e-mail z potwierdzeniem rejestracji trzeba skonfigurować klienta SMTP:
-1. Areas -> Identity -> Pages -> Account -> Register.cshtml.cs -> SendEmailAsync umieszczamy realne dane serwera SMTP (Gmail etc.)
+1. Areas -> Identity -> Pages -> Account -> Register.cshtml.cs -> w funkcji SendEmailAsync umieszczamy realne dane serwera SMTP (Gmail etc.)
 2. Wchodzimy w Program.cs i w linijcie 21 zmieniamy
    ```
    options.SignIn.RequireConfirmedAccount = false
